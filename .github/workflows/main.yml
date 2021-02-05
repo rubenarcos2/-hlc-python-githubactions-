@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE
+      # 
       - uses: actions/checkout@v2
 
-      # Set up Python 3.6 environment
+      # Vamos a establecer un environment de python 3.6
       - name: Set up Python 3.6
         uses: actions/setup-python@v1
         with:
@@ -32,13 +32,13 @@ jobs:
            ${{ runner.os }}-pip-
         
                 
-      # Install dependencies
+      # Instalamos la dependencias
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Run our unit tests
+      # Corremos nuestros tests
       - name: Run unit tests
         run: |
           pytest
