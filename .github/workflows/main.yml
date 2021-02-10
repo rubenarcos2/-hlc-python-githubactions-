@@ -43,7 +43,11 @@ jobs:
       - name: Docker Compose Actions Workflow       
         uses: actions/checkout@v2
             
-      - name: Build the stack
-        run: docker-compose up -d
-      - name: Test
-        run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/       
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: "146.59.155.170"
+          username: ${{ secrets.HOSTNAME }}
+          password: ${{ secrets.HOSTPASS }}
+          port: 22
+          script: docker-compose -d up    
