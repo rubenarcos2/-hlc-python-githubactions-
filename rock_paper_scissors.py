@@ -35,4 +35,4 @@ def rps(choice):
     return render_template("rps.html", winner=winner, player_choice=player_choice, computer_choice=computer_choice)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, host='0.0.0.0')
