@@ -35,6 +35,6 @@ jobs:
         with:
           local: requeriments.txt
           remote: /etc
-          host: root@146.59.155.170
+          host: 146.59.155.170
           username: ${{ secrets.HOSTNAME }}
           password: ${{ secrets.HOSTPASS }}
