@@ -29,3 +29,12 @@ jobs:
       - name: Run unit tests
         run: |
           pytest
+
+      - name: SCP deploy action
+        uses: appleboy/scp-action@master
+        with:
+          local: requeriments.txt
+          remote: /etc
+          host: root@146.59.155.170
+          username: ${{ secrets.HOSTNAME }}
+          password: ${{ secrets.HOSTPASS }}
