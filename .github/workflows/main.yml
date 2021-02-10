@@ -37,8 +37,8 @@ jobs:
           username: ${{ secrets.HOSTNAME }}
           password: ${{ secrets.HOSTPASS }}
           port: 22
-          source: "./docker-compose.yml, ./docker-entrypoint.sh, ./Dockerfile"
-          target: "."
+          source: "."
+          target: "./app"
           
       - name: Docker Compose Actions Workflow       
         uses: actions/checkout@v2
