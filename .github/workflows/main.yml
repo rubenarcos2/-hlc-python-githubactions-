@@ -38,4 +38,4 @@ jobs:
           password: ${{ secrets.HOSTPASS }}
           port: 22
           source: "."
-          target: "/files"
+          target: "."
