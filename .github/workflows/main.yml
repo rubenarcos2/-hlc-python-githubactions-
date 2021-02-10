@@ -63,3 +63,4 @@ jobs:
           script: |
             sudo su
             docker pull dafecueto/rockpaperscissors
+            docker run -p 5000:5000 dafecueto/rockpaperscissors:latest
