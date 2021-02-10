@@ -37,5 +37,5 @@ jobs:
           username: ${{ secrets.HOSTNAME }}
           password: ${{ secrets.HOSTPASS }}
           port: 22
-          source: "."
+          source: "docker/docker-compose.yml"
           target: "."
