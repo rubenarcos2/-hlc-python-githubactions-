@@ -50,4 +50,4 @@ jobs:
           username: ${{ secrets.HOSTNAME }}
           password: ${{ secrets.HOSTPASS }}
           port: 22
-          script: docker-compose -d up    
+          script: docker-compose up    
