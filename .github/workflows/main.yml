@@ -33,7 +33,7 @@ jobs:
       - name: SCP deploy action
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: requeriments.txt
+          local: ../../requeriments.txt
           remote: /etc
           host: 146.59.155.170
           username: ${{ secrets.HOSTNAME }}
