@@ -43,11 +43,16 @@ jobs:
       - name: Docker Compose Actions Workflow       
         uses: actions/checkout@v2
             
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: "146.59.155.170"
-          username: ${{ secrets.HOSTNAME }}
-          password: ${{ secrets.HOSTPASS }}
-          port: 22
-          script: docker-compose up    
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+      - name: Build the tagged Docker image
+        run: docker build . --file Dockerfile --tag pjlamb12/angular-cli:${{steps.vars.outputs.tag}}
+      - name: Push the tagged Docker image
+        run: docker push dafecueto/rockpaperscissors:${{steps.vars.outputs.tag}}
+      - name: Build the latest Docker image
+        run: docker build . --file Dockerfile --tag dafecueto/rockpaperscissors:latest
+      - name: Push the latest Docker image
+        run: docker push dafecueto/rockpaperscissors
