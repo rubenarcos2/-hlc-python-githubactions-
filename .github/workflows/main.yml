@@ -49,7 +49,7 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
       - name: Build the tagged Docker image
-        run: docker build . --file Dockerfile --tag pjlamb12/angular-cli:${{steps.vars.outputs.tag}}
+        run: docker build . --file Dockerfile --tag dafecueto/rockpaperscissors:${{steps.vars.outputs.tag}}
       - name: Push the tagged Docker image
         run: docker push dafecueto/rockpaperscissors:${{steps.vars.outputs.tag}}
       - name: Build the latest Docker image
