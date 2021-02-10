@@ -61,4 +61,5 @@ jobs:
           password: ${{ secrets.HOSTPASS }}
           port: 22
           script: |
+            sudo su
             docker pull dafecueto/rockpaperscissors
