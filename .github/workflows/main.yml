@@ -25,11 +25,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Corremos nuestros testsss
+      # Corremos nuestros tests
       - name: Run unit tests
         run: |
           pytest
 
+      # Esto es una prueba para utilizar una action enfocada en el scp. Para la conexión, utilizamos las secrets de Github.
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
@@ -39,7 +40,11 @@ jobs:
           port: 22
           source: "."
           target: "./app"
-          
+      
+      #En este paso, vamos a loguearnos a DockerHub utilizando las credenciales que tenemos en las variables secretas.
+      #Obtenemos la última versión de la imagen subida al repositorio de Dockerhub.
+      #Construimos la imagen y le asignamos el tag de que es la última versión.
+      #Hacemos push para subir la imagen al repositorio Dockerhub.
       - name: Docker Compose Actions Workflow       
         uses: actions/checkout@v2
             
@@ -53,6 +58,10 @@ jobs:
       - name: Push the latest Docker image
         run: docker push dafecueto/rockpaperscissors
 
+        #En este paso, vamos a acceder mediante ssh al servidor en el que queremos desplegar nuestra aplicación, y le vamos a decir:
+          # Hacer un pull de la imagen que acabamos de subir a Dockerhub.
+          # Como ya se estará desplegando, paramos el contenedor que ya se encuentra en funcionamiento, y lo eliminamos.
+          # Arrancamos un nuevo contenedor con la última versión de la imagen de nuestra aplicación.
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
