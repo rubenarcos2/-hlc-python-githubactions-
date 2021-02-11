@@ -74,4 +74,4 @@ jobs:
             docker pull dafecueto/rockpaperscissors
             docker container stop miapp
             docker container rm miapp
-            docker run -p 5000:5000 --name miapp dafecueto/rockpaperscissors:latest
+            docker run -d -p 5000:5000 --name miapp dafecueto/rockpaperscissors:latest
